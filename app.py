@@ -9,11 +9,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = '3ed2e95f933aeaa2d2b21267496eac8f'
+app.secret_key = os.getenv('SECRET_KEY', '3ed2e95f933aeaa2d2b21267496eac8f')
 
-# Admin credentials - Store hashed password
-ADMIN_USERNAME = 'Shrihari'
-ADMIN_PASSWORD_HASH = generate_password_hash('Kasar')  # Use hashed password
+# Admin credentials from environment variables, with fallback defaults
+ADMIN_USERNAME = os.getenv('ADMIN_ID', 'Shrihari')
+ADMIN_PASSWORD_HASH = os.getenv('ADMIN_PASS_HASH')
+
+# Generate default hash if none provided (for local dev only)
+if not ADMIN_PASSWORD_HASH:
+    ADMIN_PASSWORD_HASH = generate_password_hash('Kasar')
 
 def connect_db():
     return mysql.connector.connect(**DB_CONFIG)
@@ -149,7 +153,6 @@ def export_achievements():
     achievements = cursor.fetchall()
     db.close()
 
-    # Convert data into a pandas DataFrame
     data = []
     for index, achievement in enumerate(achievements, start=1):
         data.append([ 
@@ -163,7 +166,6 @@ def export_achievements():
 
     df = pd.DataFrame(data, columns=['Sr No', 'Student Name', 'Activity Details', 'Organized By', 'Date', 'Remark'])
 
-    # Save the DataFrame to a BytesIO object
     output = BytesIO()
     df.to_excel(output, index=False, engine='openpyxl')
     output.seek(0)
