@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Achievement</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="custom-navbar">
+    <div class="navbar-container">
+      <h2 class="site-title">🎓 College Achievements</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/submit">Submit</a>
+        <a href="/admin/login">Admin</a>
+      </div>
+    </div>
+  </div>  
+
+  <div class="container">
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <h2>Submit Achievement</h2>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flash-messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      <input type="text" name="student_name" placeholder="Student Name" required>
+      <textarea name="activity_details" placeholder="Activity Details" required></textarea>
+      <input type="text" name="organized_by" placeholder="Organized By" required>
+      <input type="date" name="activity_date" required>
+      <input type="text" name="remark" placeholder="Remark (Participation, First Prize, Second Prize, etc.)" required>
+      <input type="file" name="certificate" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

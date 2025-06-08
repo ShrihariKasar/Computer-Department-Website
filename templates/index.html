@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Achievements Gallery</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+    }
+    
+    .navbar-brand {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .navbar-nav .nav-link {
+      margin-left: 20px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover {
+      color: #ffc107;
+    }
+    
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #ffc107;
+      left: 0;
+      bottom: -5px;
+      transition: width 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }    
+    .navbar {
+      background-color: #0d1b2a;
+      padding: 15px 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links a {
+      color: #dcdcdc;
+      text-decoration: none;
+      margin-left: 30px;
+      font-size: 16px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #fca311;
+      left: 0;
+      bottom: -6px;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: #fca311;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    
+      .nav-links {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    
+      .nav-links a {
+        margin: 10px 0;
+      }
+    }    
+    .container h1 {
+      margin: 40px 0 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .card img {
+      max-height: 200px;
+      object-fit: cover;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+    .export-btn {
+      background-color: #198754;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin: 30px auto 50px;
+      display: block;
+      text-align: center;
+    }
+    .modal-content img {
+      border-radius: 10px;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    .hover-card {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .hover-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+  
+    .hover-btn {
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+  
+    .hover-btn:hover {
+      transform: scale(1.1);
+      background-color: #3b82f6;
+    }
+  
+    .btn-light {
+      background-color: #ffffff;
+      color: #4c6ef5;
+      border: 2px solid #4c6ef5;
+    }
+  
+    .btn-light:hover {
+      color: #ffffff;
+      background-color: #4c6ef5;
+    }
+  
+    /* Animation Enhancements */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .animate__animated {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+    }
+  
+    .animate__fadeInUp {
+      animation-name: fadeInUp;
+    }
+    footer {
+      background-color: #1a1a1a;
+    }
+  
+    footer .text-danger {
+      color: #d32f2f !important; /* Dark Red */
+    }
+  
+    footer .text-light-opacity {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  
+    footer .text-light-opacity:hover {
+      color: #d32f2f;
+    }
+  
+    footer .social-icon {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #6c1f1f; /* Dark red background */
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    
+    footer .social-icon:hover {
+      background-color: #4a0a0a; /* Darker red on hover */
+      transform: scale(1.1);
+    }
+       
+  
+    footer .input-group input {
+      border-radius: 0.25rem;
+      padding: 0.75rem;
+    }
+  
+    footer .input-group button {
+      border-radius: 0.25rem;
+      background-color: #d32f2f;
+      border: none;
+    }
+  
+    footer .input-group button:hover {
+      background-color: #b71c1c;
+    }
+  
+    footer h5, footer h6 {
+      font-weight: bold;
+      color: #f5f5f5;
+    }
+  
+    footer .font-weight-bold {
+      font-weight: bold;
+    }
+  
+    @media (max-width: 768px) {
+      footer .col-md-4 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+      /* Custom Styles */
+  .bg-dark-2 {
+    background-color: rgba(30, 30, 30, 0.7);
+  }
+  
+  .text-light-opacity {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .link-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .link-hover:hover {
+    color: white !important;
+    transform: translateX(5px);
+    text-decoration: none;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    background: var(--bs-primary);
+    transform: translateY(-3px);
+  }
+  
+  .hover-shadow-lg {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-shadow-lg:hover {
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-5px);
+  }
+  
+  .circles .circle {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .circles .circle:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .circles .circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+  }
+  
+  .circles .circle:nth-child(3) {
+    width: 70px;
+    height: 70px;
+    top: 80%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+  </style>
+</head>
+<body>
+
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-warning" href="{{ url_for('index') }}">
+      🎓 College Achievements
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="navbar-nav">
+        <a class="nav-link text-light" href="{{ url_for('index') }}">Home</a>
+        <a class="nav-link text-light" href="{{ url_for('submit') }}">Submit</a>
+        {% if session.admin %}
+          <a class="nav-link text-light" href="{{ url_for('admin') }}">Dashboard</a>
+          <a class="nav-link text-light" href="{{ url_for('admin_logout') }}">Logout</a>
+        {% else %}
+          <a class="nav-link text-light" href="{{ url_for('admin_login') }}">Admin</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Welcome Section -->
+  <section class="welcome-section" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; background-color: #f8f9fa; padding: 60px 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 1200px; margin: 40px auto;">
+    <div style="flex: 1 1 400px; padding: 20px;">
+      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Achievement Icon" style="max-width: 100%; height: auto; border-radius: 15px;">
+    </div>
+    <div style="flex: 1 1 500px; padding: 20px;">
+      <h2 style="font-size: 2.5rem; font-weight: 700; color: #343a40; margin-bottom: 20px;">Celebrating Excellence</h2>
+      <p style="font-size: 1.2rem; color: #555; line-height: 1.8;">
+        Welcome to our College Achievements Gallery — a space where dedication meets recognition. From academic brilliance and sports triumphs to cultural talents and innovative breakthroughs, this platform honors every milestone reached by our extraordinary students and faculty.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Achievements and Benefits -->
+  <div class="section bg-light py-5">
+    <div class="container text-center">
+      <h2 class="display-4 font-weight-bold text-primary mb-4">About Achievements and Their Benefits</h2>
+      <p class="lead text-muted mb-4">Achievements are powerful symbols of personal growth, dedication, and excellence. Whether it's a student's remarkable project or a staff member's outstanding contribution, these milestones showcase the skills, determination, and passion that drive success. Celebrating these moments not only boosts individual confidence but also fosters a culture of achievement across the campus, motivating everyone to strive for greatness.</p>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg border-light rounded p-4">
+            <h4 class="text-center text-info">Personal Growth</h4>
+            <p class="text-muted">Achieving milestones allows individuals to reflect on their progress, boosting their self-esteem and encouraging continued improvement.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg border-light rounded p-4">
+            <h4 class="text-center text-info">Confidence Boost</h4>
+            <p class="text-muted">Recognition for achievements builds self-confidence, creating a sense of accomplishment that propels individuals forward in their pursuits.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg border-light rounded p-4">
+            <h4 class="text-center text-info">Enhanced Resumes</h4>
+            <p class="text-muted">Not only are achievements personally rewarding, but they also make for standout additions to resumes and professional profiles, showcasing expertise and dedication.</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-center mt-5">
+        <a href="/submit" class="btn btn-primary btn-lg">Submit Your Achievement</a>
+      </div>
+    </div>
+  </div>  
+  <!-- Achievements Section -->
+  <div class="container">
+    <h1>College Students Achievements</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for achievement in achievements %}
+      <div class="col">
+        <div class="card shadow-sm h-100" onclick="openModal('{{ url_for('static', filename='uploads/' + achievement.certificate) }}', '{{ achievement.student_name }}', `{{ achievement.activity_details }}`)">
+          <img src="{{ url_for('static', filename='uploads/' + achievement.certificate) }}" class="card-img-top" alt="Certificate">
+          <div class="card-body">
+            <h5 class="card-title">{{ achievement.student_name }}</h5>
+            <p class="card-text"><strong>Activity:</strong> {{ achievement.activity_details[:100] }}...</p>
+            <p class="card-text"><strong>Organized By:</strong> {{ achievement.organized_by }}</p>
+            <p class="card-text"><strong>Date:</strong> {{ achievement.activity_date }}</p>
+            <p class="card-text"><strong>Remark:</strong> {{ achievement.remark }}</p>
+            {% if session.admin %}
+              <a href="{{ url_for('delete_achievement', id=achievement.id) }}" class="delete-btn" onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this achievement?');">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="/submit" class="fun-btn">🎉 Add Your Achievement</a>
+    </div>
+    {% if session.admin %}
+      <a href="{{ url_for('export_achievements') }}" class="export-btn">Export to Excel</a>
+    {% endif %}
+  </div>
+
+  <!-- About Matoshri College -->
+  <div class="section bg-gradient py-5" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);">
+    <div class="container text-center text-white">
+      <h2 class="display-4 font-weight-bold mb-4 animate__animated animate__fadeInUp" style="color: #8a2be2;">About Matoshri College of Engineering</h2>
+      <p class="lead mb-5 animate__animated animate__fadeInUp" style="animation-delay: 0.2s; color:rgb(121, 21, 21);">
+        Matoshri College of Engineering and Research Centre stands at the forefront of academic excellence, blending industry expertise with cutting-edge research to equip the engineers of tomorrow. Our commitment to innovation, skill-building, and holistic development ensures that our students thrive in dynamic professional environments.
+      </p>
+  
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="card border-0 shadow-lg rounded-lg p-4 bg-white hover-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+            <div class="card-body text-center">
+              <h4 class="card-title text-primary mb-3">World-Class Education</h4>
+              <p class="card-text text-muted">Our curriculum is crafted to provide comprehensive knowledge that prepares students for leadership in engineering fields globally. We focus on practical learning and real-world application.</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4 mb-4">
+          <div class="card border-0 shadow-lg rounded-lg p-4 bg-white hover-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+            <div class="card-body text-center">
+              <h4 class="card-title text-primary mb-3">Industry Exposure</h4>
+              <p class="card-text text-muted">We have built strong partnerships with top industries, providing students with invaluable hands-on learning experiences and internships to bridge the gap between theory and practice.</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4 mb-4">
+          <div class="card border-0 shadow-lg rounded-lg p-4 bg-white hover-card animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+            <div class="card-body text-center">
+              <h4 class="card-title text-primary mb-3">Cutting-Edge Research</h4>
+              <p class="card-text text-muted">Our research facilities foster creativity and innovation, empowering students to contribute to advancements in science, technology, and engineering, with real-world applications in focus.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-center mt-5 animate__animated animate__fadeInUp" style="animation-delay: 1s;">
+        <a href="https://engg.matoshri.edu.in" class="btn btn-light btn-lg px-5 py-3 rounded-pill shadow hover-btn">Apply Now</a>
+      </div>
+    </div>
+  </div>    
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5 position-relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 opacity-15">
+      <div class="circles">
+        <div class="circle position-absolute rounded-circle bg-danger"></div>
+        <div class="circle position-absolute rounded-circle bg-purple"></div>
+        <div class="circle position-absolute rounded-circle bg-info"></div>
+      </div>
+    </div>
+    
+    <div class="container position-relative">
+      <div class="row g-4">
+        <!-- About Column with animation -->
+        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="100">
+          <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
+            <h5 class="font-weight-bold text-danger mb-4">About Matoshri College</h5>
+            <p class="text-light-opacity mb-0 font-weight-bold" style="color: #f5f5f5;">Matoshri College of Engineering and Research Centre is dedicated to excellence in education, offering cutting-edge research opportunities and real-world industry exposure to shape the future leaders of tomorrow.</p>
+          </div>
+        </div>
+        
+        <!-- Quick Links Column with animation -->
+        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="200">
+          <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
+            <h5 class="font-weight-bold text-danger mb-4">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="/about" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
+                  <i class="fas fa-chevron-right me-2 text-danger small"></i> About Us
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="/admissions" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
+                  <i class="fas fa-chevron-right me-2 text-danger small"></i> Admissions
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="/contact" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
+                  <i class="fas fa-chevron-right me-2 text-danger small"></i> Contact
+                </a>
+              </li>
+              <li>
+                <a href="/privacy" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
+                  <i class="fas fa-chevron-right me-2 text-danger small"></i> Privacy Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Follow Us Column with animation -->
+        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="300">
+          <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
+            <h5 class="font-weight-bold text-danger mb-4">Follow Us</h5>
+            <p class="text-light-opacity mb-4" style="font-weight: bold;">Stay connected with us on social media for the latest updates and news.</p>
+            <div class="d-flex social-icons">
+              <a href="https://facebook.com" class="text-white me-3 social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com" class="text-white me-3 social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://linkedin.com" class="text-white me-3 social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://instagram.com" class="text-white me-3 social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://youtube.com" class="text-white social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Copyright Section -->
+      <div class="text-center mt-5 pt-4 border-top border-secondary">
+        <p class="text-muted mb-2">&copy; 2025 Matoshri College of Engineering. All Rights Reserved.</p>
+        <p class="text-muted mb-0" style="font-weight: bold;">Designed with <span class="text-danger">&hearts;</span> by Shrihari Kasar</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="btn btn-danger rounded-circle position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; display: none !important;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-4">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle"></h5>
+          <button type="button" class="btn-close" onclick="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modalImage" src="" class="img-fluid mb-3">
+          <p id="modalDescription" class="text-start"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function openModal(imageSrc, title, description) {
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+
+      modalImage.src = imageSrc;
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+
+      const modal = new bootstrap.Modal(document.getElementById('modal'));
+      modal.show();
+    }
+
+    function closeModal() {
+      const modalEl = document.getElementById('modal');
+      const modalInstance = bootstrap.Modal.getInstance(modalEl);
+      modalInstance.hide();
+    }
+     // Back to Top Button
+  window.addEventListener('scroll', function() {
+    var backToTop = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+      backToTop.style.display = 'flex';
+    } else {
+      backToTop.style.display = 'none';
+    }
+  });
+  
+  document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  
+  // Initialize AOS (Animate On Scroll) if you're using it
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+  }
+  </script>
+</body>
+</html>

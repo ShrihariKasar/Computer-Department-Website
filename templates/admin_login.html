@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="custom-navbar">
+    <div class="navbar-container">
+      <h2 class="site-title">🎓 College Achievements</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/submit">Submit</a>
+        <a href="/admin/login">Admin</a>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <form action="/admin/login" method="POST">
+      <h2>Admin Login</h2>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flash-messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>
