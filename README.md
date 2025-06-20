@@ -37,7 +37,7 @@ A Flask-based web application designed to showcase and manage achievements of st
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/college-achievements-portal.git
+git clone https://github.com/ShrihariKasar/Student-Achievement-Portal.git
 cd college-achievements-portal
 ````
 
