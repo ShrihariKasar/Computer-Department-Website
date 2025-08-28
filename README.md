@@ -1,44 +1,49 @@
-# 🏆 College Achievements Portal
+# 🌐 Computer Department Website  
 
-A Flask-based web application designed to showcase and manage achievements of students and staff at Matoshri College of Engineering.
-
----
-
-## 📌 Features
-
-- 🎓 Display approved achievements on the home page
-- 🧾 Admin dashboard to approve, reject, delete entries
-- 📁 Upload certificates and display as image cards
-- 🌐 Responsive UI with Bootstrap 5
-- ✅ Export all approved achievements to Excel
-- 🔒 Admin login system with hashed passwords
+A Flask-based web application for the **Computer Department at Matoshri College of Engineering**, integrating achievements, events, announcements, study materials, Dev Club, and more — with a responsive, modern design and role-based content management.  
 
 ---
 
-## 🖼️ Screenshots
+## 📌 Features  
 
-| Home Page | Admin Dashboard |
-|-----------|-----------------|
-| ![Home](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/home.png) | ![Admin](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/admin.png) |
+- 🏆 **Achievements Portal** – Showcase approved student & faculty accomplishments  
+- 🧾 **Admin Dashboard** – Approve, reject, or delete entries (achievements, projects, users, notices)  
+- 📁 **File Uploads** – Certificates, study materials, notices, and attendance sheets  
+- 🎓 **Role-Based Access** – Separate dashboards for students, staff, and admin  
+- 📑 **Announcements & Notices** – Upload/view exam schedules, holiday notices (PDFs/images)  
+- 📚 **Study Materials** – Organized by class & subject, with staff upload & delete option  
+- 📊 **Attendance Management** – Staff upload via Excel, students view in popup  
+- 💻 **Dev Club Page** – Highlight projects, coordinators, and student submissions  
+- 🎉 **Events Section** – Showcase department activities & event highlights  
+- 🌐 **Responsive UI** – Built with Bootstrap 5, optimized for desktop & mobile  
+- ✅ **Data Export** – Export approved achievements/projects to Excel  
+- 🔒 **Secure Auth** – Hashed passwords, login & session-based role handling  
 
 ---
 
-## 🔧 Tech Stack
+## 🖼️ Screenshots  
 
-- **Frontend:** HTML, CSS, Bootstrap 5, Jinja2
-- **Backend:** Flask (Python)
-- **Database:** MySQL
-- **Libraries:** Pandas, OpenPyXL, Werkzeug
+| Home Page | Admin Dashboard | Dev Club Page | Notices Section |
+|-----------|----------------|---------------|----------------|
+| ![Home](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/home.png) | ![Admin](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/admin.png) | ![Dev Club](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/devclub.png) | ![Notices](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/notices.png) |  
 
 ---
 
-## 🚀 Installation
+## 🔧 Tech Stack  
 
-### 1. Clone the repo
+- **Frontend:** HTML, CSS, Bootstrap 5, Jinja2  
+- **Backend:** Flask (Python)  
+- **Database:** MySQL  
+- **Libraries:** Pandas, OpenPyXL, Werkzeug  
 
+---
+
+## 🚀 Installation  
+
+### 1. Clone the repo  
 ```bash
-git clone https://github.com/ShrihariKasar/Student-Achievement-Portal.git
-cd college-achievements-portal
+git clone https://github.com/ShrihariKasar/Computer-Department-Website.git
+cd computer-department-website
 ````
 
 ### 2. Set up virtual environment
@@ -56,39 +61,27 @@ pip install -r requirements.txt
 
 ### 4. Configure `.env` or `config.py`
 
-Update your database configuration and upload folder path in `config.py`:
+Update your database configuration and upload folder paths:
 
 ```python
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'youruser',
     'password': 'yourpass',
-    'database': 'achievements_db'
+    'database': 'compdept_db'
 }
 
 UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf', 'xlsx'}
 ```
 
 ### 5. Set up MySQL
 
 ```sql
-CREATE DATABASE achievements_db;
-
-USE achievements_db;
-
-CREATE TABLE achievements (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  student_name VARCHAR(255),
-  activity_details TEXT,
-  organized_by VARCHAR(255),
-  activity_date DATE,
-  remark TEXT,
-  certificate VARCHAR(255),
-  status VARCHAR(20),
-  display_on_home BOOLEAN DEFAULT 0
-);
+CREATE DATABASE compdept_db;
 ```
+
+*(Tables for achievements, users, study\_materials, attendance, announcements, projects, coordinators, etc. are included in `schema.sql`)*
 
 ### 6. Run the app
 
@@ -101,7 +94,6 @@ python app.py
 ## 👨‍💻 Contributors
 
 * **Shrihari Kasar** – [@shriharikasar](https://github.com/shriharikasar)
-* **Ishwari Gamne**
 * **Utkarsha Kakulte**
 
 ---
@@ -116,3 +108,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you find this project useful, give it a ⭐️ and feel free to contribute or raise issues!
 
+```
+
+Do you also want me to **generate the `schema.sql` file in `.md` format** so it can be directly linked in the README?
+```
