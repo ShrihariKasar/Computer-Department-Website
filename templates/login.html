@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Computer Department</title>
+<!-- Bootstrap & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- AOS and Bootstrap Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+  <style>
+body {
+  background-color: #f7f8fbff;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Login box styling */
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 30px;
+  background: rgba(20, 20, 30, 0.95);
+  border: 1px solid #1f2833;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+}
+
+/* Heading */
+.login-box h2 {
+  text-align: center;
+  color: #66fcf1;
+  margin-bottom: 25px;
+}
+
+/* Input group */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input[type="email"],
+.input-group input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: none;
+  background-color: #e6efff;
+  color: #000;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+/* Eye icon inside password input */
+.input-group .toggle-password {
+  position: absolute;
+top: 65%; /* slightly adjusted */
+  right: 12px; /* brings it closer inside */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #00e6ff;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+/* Login button */
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00e6ff;
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00e6ff;
+    }
+
+/* Footer */
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.login-footer a {
+  color: #66fcf1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  letter-spacing: 0.5px;
+}
+
+/* Logo in navbar */
+.navbar-brand img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+/* Toast container - center of screen */
+/* Centered Toast at Top */
+.toast-container.centered-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1055;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+}
+.toast.text-bg-danger {
+  background-color: #d9534f;
+  color: #fff;
+  pointer-events: auto; /* Allow close button interaction */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+</style>
+</head>
+<body>
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-warning d-flex align-items-center" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" width="52" height="52" class="me-2">
+      Computer Department
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="navbar-nav">
+        <a class="nav-link text-light" href="{{ url_for('department_home') }}">
+          <i class="fas fa-home me-2"></i>Home
+        </a>
+        <a class="nav-link text-light" href="{{ url_for('events') }}">
+          <i class="fas fa-calendar-alt me-2"></i>Events
+        </a>
+        <a class="nav-link text-light" href="{{ url_for('index') }}">
+          <i class="fas fa-trophy me-2"></i>Achievements
+        </a>
+        <a class="nav-link text-light" href="{{ url_for('submit') }}">
+  <i class="fas fa-upload me-2"></i>Submit
+</a>
+
+       <a class="nav-link text-light" href="{{ url_for('dev_club') }}">
+            <i class="fas fa-code me-2"></i>Dev Club
+          </a>
+        {% if session.get('role') in ['student', 'staff', 'admin'] %}
+  <a class="nav-link text-light" href="{{ url_for('study_materials') }}">
+    <i class="fas fa-book me-2"></i>Study Materials
+  </a>
+{% endif %}
+        {% if session.user_id %}
+          {% if session.role == 'student' %}
+            <a class="nav-link text-light" href="{{ url_for('student_dashboard') }}">
+              <i class="fas fa-user-graduate me-2"></i>Student Dashboard
+            </a>
+          {% elif session.role == 'staff' %}
+            <a class="nav-link text-light" href="{{ url_for('staff_dashboard') }}">
+              <i class="fas fa-chalkboard-teacher me-2"></i>Staff Dashboard
+            </a>
+          {% endif %}
+          <a class="nav-link text-light" href="{{ url_for('logout') }}">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </a>
+        {% elif session.admin %}
+          <a class="nav-link text-light" href="{{ url_for('admin') }}">
+            <i class="fas fa-user-shield me-2"></i>Admin Dashboard
+          </a>
+          <a class="nav-link text-light" href="{{ url_for('admin_logout') }}">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </a>
+        {% else %}
+          <a class="nav-link text-light" href="{{ url_for('admin_login') }}">
+            <i class="fas fa-user-shield me-2"></i>Admin
+          </a>
+          <a class="nav-link text-light" href="{{ url_for('login') }}">
+            <i class="fas fa-sign-in-alt me-2"></i>Login
+          </a>
+          <a class="nav-link text-light" href="{{ url_for('register') }}">
+            <i class="fas fa-user-plus me-2"></i>Register
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Flash Toasts -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="toast-container centered-toast">
+      {% for category, message in messages %}
+        <div class="toast text-bg-{{ category }} show" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body">{{ message }}</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+<!-- Login Box -->
+<div class="login-box">
+  <h2><i class="fas fa-sign-in-alt me-2"></i>Login</h2>
+  <form method="POST">
+    <div class="input-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    </div>
+
+  <div class="input-group">
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" placeholder="********" required>
+  <span class="toggle-password" onclick="togglePassword()">
+    <i class="fas fa-eye"></i>
+  </span>
+</div>
+
+
+    <button type="submit">Login</button>
+  </form>
+    <div class="login-footer mt-3">
+      <p>New here? <a href="{{ url_for('register') }}">Register Now</a></p>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Bootstrap JS -->
+<script>
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleIcon = document.getElementById("toggleIcon");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+  }
+}
+ document.addEventListener('DOMContentLoaded', () => {
+    const toastElList = Array.from(document.querySelectorAll('.toast'));
+    toastElList.forEach(toastEl => {
+      const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+      toast.show();
+    });
+    // ✅ If redirect flag is passed from Flask, redirect after showing toast
+    {% if redirect_after_login %}
+      setTimeout(() => {
+        window.location.href = "{{ url_for('dashboard') }}";
+      }, 2000);
+    {% endif %}
+  });
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

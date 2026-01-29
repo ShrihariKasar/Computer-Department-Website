@@ -6,6 +6,8 @@
   <title>Achievements Gallery</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -209,143 +211,221 @@
     .animate__fadeInUp {
       animation-name: fadeInUp;
     }
-    footer {
+     {
       background-color: #1a1a1a;
     }
   
-    footer .text-danger {
-      color: #d32f2f !important; /* Dark Red */
-    }
-  
-    footer .text-light-opacity {
-      color: rgba(255, 255, 255, 0.8);
-    }
-  
-    footer .text-light-opacity:hover {
-      color: #d32f2f;
-    }
-  
-    footer .social-icon {
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #6c1f1f; /* Dark red background */
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-    
-    footer .social-icon:hover {
-      background-color: #4a0a0a; /* Darker red on hover */
-      transform: scale(1.1);
-    }
-       
-  
-    footer .input-group input {
-      border-radius: 0.25rem;
-      padding: 0.75rem;
-    }
-  
-    footer .input-group button {
-      border-radius: 0.25rem;
-      background-color: #d32f2f;
-      border: none;
-    }
-  
-    footer .input-group button:hover {
-      background-color: #b71c1c;
-    }
-  
-    footer h5, footer h6 {
-      font-weight: bold;
-      color: #f5f5f5;
-    }
-  
-    footer .font-weight-bold {
-      font-weight: bold;
-    }
-  
-    @media (max-width: 768px) {
-      footer .col-md-4 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-    }
-      /* Custom Styles */
-  .bg-dark-2 {
-    background-color: rgba(30, 30, 30, 0.7);
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap');
+
+footer {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #eee;
+  font-family: 'Rajdhani', sans-serif;
+  padding: 60px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #ff416c, #ff4b2b);
+  opacity: 0.2;
+  filter: blur(100px);
+  z-index: 0;
+}
+
+footer::after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #00c9ff, #92fe9d);
+  opacity: 0.2;
+  filter: blur(100px);
+  z-index: 0;
+}
+
+/* Headings */
+footer h5,
+footer h6 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* Text Links */
+footer .text-light-opacity {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+footer .text-light-opacity:hover {
+  color: #ff416c;
+  transform: scale(1.05);
+}
+
+/* Social Icons */
+footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+footer .social-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(145deg, #6a11cb, #2575fc);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 14px rgba(100, 100, 255, 0.4);
+  text-decoration: none;
+}
+
+footer .social-icon:hover {
+  background: linear-gradient(145deg, #ff416c, #ff4b2b);
+  transform: scale(1.2) rotate(6deg);
+  box-shadow: 0 6px 18px rgba(255, 65, 108, 0.6);
+}
+
+/* Input Fields (optional if needed) */
+footer .input-group input {
+  border: none;
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px 0 0 8px;
+  color: #fff;
+  outline: none;
+}
+
+footer .input-group button {
+  border: none;
+  padding: 12px 16px;
+  background-color: #ff416c;
+  color: white;
+  border-radius: 0 8px 8px 0;
+  transition: background-color 0.3s ease;
+}
+
+footer .input-group button:hover {
+  background-color: #e63e60;
+}
+
+/* Floating Circles (background effect) */
+footer .circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 7s ease-in-out infinite;
+  z-index: 0;
+}
+
+footer .circle:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  left: 5%;
+  background-color: #ff4b2b;
+  animation-delay: 1s;
+}
+
+footer .circle:nth-child(2) {
+  width: 140px;
+  height: 140px;
+  bottom: 15%;
+  right: 10%;
+  background-color: #00c9ff;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  footer .social-icons {
+    flex-direction: row;
+    gap: 10px;
   }
-  
-  .text-light-opacity {
-    color: rgba(255, 255, 255, 0.7);
+
+  footer h5, footer h6 {
+    font-size: 1.25rem;
   }
-  
-  .link-hover {
-    transition: all 0.3s ease;
-  }
-  
-  .link-hover:hover {
-    color: white !important;
-    transform: translateX(5px);
-    text-decoration: none;
-  }
-  
-  .social-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .social-icon:hover {
-    background: var(--bs-primary);
-    transform: translateY(-3px);
-  }
-  
-  .hover-shadow-lg {
-    transition: all 0.3s ease;
-  }
-  
-  .hover-shadow-lg:hover {
-    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3) !important;
-    transform: translateY(-5px);
-  }
-  
-  .circles .circle {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .circles .circle:nth-child(1) {
-    width: 100px;
-    height: 100px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-  }
-  
-  .circles .circle:nth-child(2) {
-    width: 150px;
-    height: 150px;
-    top: 60%;
-    left: 80%;
-    animation-delay: 2s;
-  }
-  
-  .circles .circle:nth-child(3) {
-    width: 70px;
-    height: 70px;
-    top: 80%;
-    left: 20%;
-    animation-delay: 4s;
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-  }
+}
+.follow-us-card {
+  background: #1c1c2e;
+  color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.follow-us-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.45);
+}
+
+.follow-us-title {
+  font-size: 1.6rem;
+  color: #ff4c60;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.follow-us-desc {
+  font-weight: 500;
+  color: #dcdcdc;
+  margin-bottom: 20px;
+}
+
+.social-icon-group {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-icon-link {
+  color: #ffffff;
+  background-color: #2e2e45;
+  font-size: 1.5rem;
+  padding: 14px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon-link:hover {
+  background-color: #ff4c60;
+  color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(255, 76, 96, 0.6);
+}
   </style>
 </head>
 <body>
@@ -353,8 +433,9 @@
  <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold text-warning" href="{{ url_for('index') }}">
-      🎓 College Achievements
+    <a class="navbar-brand fw-bold text-warning d-flex align-items-center" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" width="52" height="52" class="me-2">
+      Computer Department
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -363,19 +444,111 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <div class="navbar-nav">
-        <a class="nav-link text-light" href="{{ url_for('index') }}">Home</a>
-        <a class="nav-link text-light" href="{{ url_for('submit') }}">Submit</a>
-        {% if session.admin %}
-          <a class="nav-link text-light" href="{{ url_for('admin') }}">Dashboard</a>
-          <a class="nav-link text-light" href="{{ url_for('admin_logout') }}">Logout</a>
+        <a class="nav-link text-light" href="{{ url_for('department_home') }}">
+          <i class="fas fa-home me-2"></i>Home
+        </a>
+        <a class="nav-link text-light" href="{{ url_for('events') }}">
+          <i class="fas fa-calendar-alt me-2"></i>Events
+        </a>
+        <a class="nav-link text-light" href="{{ url_for('index') }}">
+          <i class="fas fa-trophy me-2"></i>Achievements
+        </a>
+        <a class="nav-link text-light" href="{{ url_for('submit') }}">
+  <i class="fas fa-upload me-2"></i>Submit
+</a>
+        <a class="nav-link text-light" href="{{ url_for('dev_club') }}">
+            <i class="fas fa-code me-2"></i>Dev Club
+          </a>
+        {% if session.user_id %}
+          {% if session.role == 'student' %}
+            <a class="nav-link text-light" href="{{ url_for('student_dashboard') }}">
+              <i class="fas fa-user-graduate me-2"></i>Student Dashboard
+            </a>
+          {% elif session.role == 'staff' %}
+            <a class="nav-link text-light" href="{{ url_for('staff_dashboard') }}">
+              <i class="fas fa-chalkboard-teacher me-2"></i>Staff Dashboard
+            </a>
+          {% endif %}
+          <a class="nav-link text-light" href="{{ url_for('logout') }}">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </a>
+        {% elif session.admin %}
+          <a class="nav-link text-light" href="{{ url_for('admin') }}">
+            <i class="fas fa-user-shield me-2"></i>Admin Dashboard
+          </a>
+          <a class="nav-link text-light" href="{{ url_for('admin_logout') }}">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </a>
         {% else %}
-          <a class="nav-link text-light" href="{{ url_for('admin_login') }}">Admin</a>
+          <a class="nav-link text-light" href="{{ url_for('admin_login') }}">
+            <i class="fas fa-user-shield me-2"></i>Admin
+          </a>
+          <a class="nav-link text-light" href="{{ url_for('login') }}">
+            <i class="fas fa-sign-in-alt me-2"></i>Login
+          </a>
+          <a class="nav-link text-light" href="{{ url_for('register') }}">
+            <i class="fas fa-user-plus me-2"></i>Register
+          </a>
         {% endif %}
       </div>
     </div>
   </div>
-</nav>
+</nav> 
+  <!-- Achievements Section -->
 
+  <div class="container">
+        <h1>College Students Achievements</h1>
+<!-- Filters -->
+<form id="filter-form" method="get" class="d-flex flex-wrap gap-3 justify-content-end mb-4 align-items-center p-3 rounded shadow" style="background-color: #2c3e50;">
+  
+  <!-- Year Filter -->
+  <div class="d-flex align-items-center">
+    <label for="year" class="fw-bold me-2 text-white">Year:</label>
+    <select name="year" id="year" class="form-select border-0 shadow-sm" style="min-width: 150px;">
+      <option value="">All Years</option>
+      {% for y in years %}
+        <option value="{{ y }}" {% if y|string == selected_year %}selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Sort Filter -->
+  <div class="d-flex align-items-center">
+    <label for="sort" class="fw-bold me-2 text-white">Sort:</label>
+    <select name="sort" id="sort" class="form-select border-0 shadow-sm" style="min-width: 150px;">
+      <option value="desc" {% if sort_order == 'desc' %}selected{% endif %}>Newest First</option>
+      <option value="asc" {% if sort_order == 'asc' %}selected{% endif %}>Oldest First</option>
+    </select>
+  </div>
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for achievement in achievements %}
+      <div class="col">
+        <div class="card shadow-sm h-100" onclick="openModal('{{ url_for('static', filename='uploads/' + achievement.certificate) }}', '{{ achievement.student_name }}', `{{ achievement.activity_details }}`)">
+          <img src="{{ url_for('static', filename='uploads/' + achievement.certificate) }}" class="card-img-top" alt="Certificate">
+          <div class="card-body">
+            <h5 class="card-title">{{ achievement.student_name }}</h5>
+            <p class="card-text"><strong>Activity:</strong> {{ achievement.activity_details[:100] }}...</p>
+            <p class="card-text"><strong>Organized By:</strong> {{ achievement.organized_by }}</p>
+            <p class="card-text"><strong>Date:</strong> {{ achievement.activity_date }}</p>
+            <p class="card-text"><strong>Remark:</strong> {{ achievement.remark }}</p>
+            {% if session.admin %}
+              <a href="{{ url_for('delete_achievement', id=achievement.id) }}" class="delete-btn" onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this achievement?');">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="/submit" class="fun-btn">🎉 Add Your Achievement</a>
+    </div>
+    {% if session.admin %}
+      <a href="{{ url_for('export_achievements') }}" class="export-btn">Export to Excel</a>
+    {% endif %}
+  </div>
   <!-- Welcome Section -->
   <section class="welcome-section" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; background-color: #f8f9fa; padding: 60px 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 1200px; margin: 40px auto;">
     <div style="flex: 1 1 400px; padding: 20px;">
@@ -420,37 +593,7 @@
         <a href="/submit" class="btn btn-primary btn-lg">Submit Your Achievement</a>
       </div>
     </div>
-  </div>  
-  <!-- Achievements Section -->
-  <div class="container">
-    <h1>College Students Achievements</h1>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for achievement in achievements %}
-      <div class="col">
-        <div class="card shadow-sm h-100" onclick="openModal('{{ url_for('static', filename='uploads/' + achievement.certificate) }}', '{{ achievement.student_name }}', `{{ achievement.activity_details }}`)">
-          <img src="{{ url_for('static', filename='uploads/' + achievement.certificate) }}" class="card-img-top" alt="Certificate">
-          <div class="card-body">
-            <h5 class="card-title">{{ achievement.student_name }}</h5>
-            <p class="card-text"><strong>Activity:</strong> {{ achievement.activity_details[:100] }}...</p>
-            <p class="card-text"><strong>Organized By:</strong> {{ achievement.organized_by }}</p>
-            <p class="card-text"><strong>Date:</strong> {{ achievement.activity_date }}</p>
-            <p class="card-text"><strong>Remark:</strong> {{ achievement.remark }}</p>
-            {% if session.admin %}
-              <a href="{{ url_for('delete_achievement', id=achievement.id) }}" class="delete-btn" onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this achievement?');">Delete</a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="text-center mt-5">
-      <a href="/submit" class="fun-btn">🎉 Add Your Achievement</a>
-    </div>
-    {% if session.admin %}
-      <a href="{{ url_for('export_achievements') }}" class="export-btn">Export to Excel</a>
-    {% endif %}
-  </div>
-
+  </div> 
   <!-- About Matoshri College -->
   <div class="section bg-gradient py-5" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);">
     <div class="container text-center text-white">
@@ -514,65 +657,64 @@
           </div>
         </div>
         
-        <!-- Quick Links Column with animation -->
-        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
-            <h5 class="font-weight-bold text-danger mb-4">Quick Links</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="/about" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
-                  <i class="fas fa-chevron-right me-2 text-danger small"></i> About Us
-                </a>
-              </li>
-              <li class="mb-2">
-                <a href="/admissions" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
-                  <i class="fas fa-chevron-right me-2 text-danger small"></i> Admissions
-                </a>
-              </li>
-              <li class="mb-2">
-                <a href="/contact" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
-                  <i class="fas fa-chevron-right me-2 text-danger small"></i> Contact
-                </a>
-              </li>
-              <li>
-                <a href="/privacy" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;">
-                  <i class="fas fa-chevron-right me-2 text-danger small"></i> Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Follow Us Column with animation -->
-        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="300">
-          <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
-            <h5 class="font-weight-bold text-danger mb-4">Follow Us</h5>
-            <p class="text-light-opacity mb-4" style="font-weight: bold;">Stay connected with us on social media for the latest updates and news.</p>
-            <div class="d-flex social-icons">
-              <a href="https://facebook.com" class="text-white me-3 social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="https://twitter.com" class="text-white me-3 social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="https://linkedin.com" class="text-white me-3 social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-              <a href="https://instagram.com" class="text-white me-3 social-icon">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="https://youtube.com" class="text-white social-icon">
-                <i class="fab fa-youtube"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- Quick Links Column with animation -->
+<div class="col-md-4 mb-4 animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="200">
+  <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
+    <h5 class="font-weight-bold text-danger mb-4">Quick Links</h5>
+    <ul class="list-unstyled">
+      <li class="mb-2">
+        <a href="https://engg.matoshri.edu.in/about" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;" target="_blank">
+          <i class="fas fa-chevron-right me-2 text-danger small"></i> About Us
+        </a>
+      </li>
+      <li class="mb-2">
+        <a href="https://engg.matoshri.edu.in" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;" target="_blank">
+          <i class="fas fa-chevron-right me-2 text-danger small"></i> Admissions
+        </a>
+      </li>
+      <li class="mb-2">
+        <a href="https://engg.matoshri.edu.in/contact" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;" target="_blank">
+          <i class="fas fa-chevron-right me-2 text-danger small"></i> Contact
+        </a>
+      </li>
+      <li class="mb-2">
+        <a href="https://engg.matoshri.edu.in/secretary-message" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;" target="_blank">
+          <i class="fas fa-chevron-right me-2 text-danger small"></i> Secretary’s Message
+        </a>
+      </li>
+      <li class="mb-2">
+        <a href="https://engg.matoshri.edu.in/code-of-conduct" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;" target="_blank">
+          <i class="fas fa-chevron-right me-2 text-danger small"></i> Code of Conduct
+        </a>
+      </li>
+      <li>
+        <a href="https://engg.matoshri.edu.in/governing-body" class="text-light-opacity d-flex align-items-center link-hover" style="font-weight: bold;" target="_blank">
+          <i class="fas fa-chevron-right me-2 text-danger small"></i> Governing Body
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+ <!-- Follow Us Column with animation -->
+<div class="col-md-4 mb-4 animate__animated animate__fadeInUp mx-auto" data-aos="fade-up" data-aos-delay="300" style="text-align: center;">
+  <div class="h-100 p-4 bg-dark-2 rounded-3 shadow-lg hover-shadow-lg transition-all">
+    <h5 class="font-weight-bold text-danger mb-4">Follow Us</h5>
+    <p class="text-light-opacity mb-4" style="font-weight: bold;">Stay connected with us on social media for the latest updates and news.</p>
+    <div class="d-flex justify-content-center social-icons">
+      <a href="https://www.instagram.com/mcoerc_official/" class="text-white mx-3 social-icon" target="_blank">
+        <i class="fab fa-instagram fa-lg"></i>
+      </a>
+      <a href="https://www.linkedin.com/company/matoshri-college-of-engineering-and-research-center-eklahare-nashik/" class="text-white mx-3 social-icon" target="_blank">
+        <i class="fab fa-linkedin-in fa-lg"></i>
+      </a>
+    </div>
+  </div>
+</div>
       
       <!-- Copyright Section -->
       <div class="text-center mt-5 pt-4 border-top border-secondary">
-        <p class="text-muted mb-2">&copy; 2025 Matoshri College of Engineering. All Rights Reserved.</p>
-        <p class="text-muted mb-0" style="font-weight: bold;">Designed with <span class="text-danger">&hearts;</span> by Shrihari Kasar</p>
+        <p class="text-muted mb-2">&copy; Matoshri College of Engineering. All Rights Reserved.</p>
+        <p class="text-muted mb-0" style="font-weight: bold;">Designed with <span class="text-danger">&hearts;</span> by Computer Department</p>
       </div>
     </div>
   </footer>
@@ -599,46 +741,43 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    function openModal(imageSrc, title, description) {
-      const modalImage = document.getElementById('modalImage');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalDescription = document.getElementById('modalDescription');
+function openModal(imageSrc, title, description) {
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
 
-      modalImage.src = imageSrc;
-      modalTitle.textContent = title;
-      modalDescription.textContent = description;
+  modalImage.src = imageSrc;
+  modalTitle.textContent = title;
+  modalDescription.textContent = description;
 
-      const modal = new bootstrap.Modal(document.getElementById('modal'));
-      modal.show();
-    }
+  const modal = new bootstrap.Modal(document.getElementById('modal'));
+  modal.show();
+}
 
-    function closeModal() {
-      const modalEl = document.getElementById('modal');
-      const modalInstance = bootstrap.Modal.getInstance(modalEl);
-      modalInstance.hide();
-    }
-     // Back to Top Button
-  window.addEventListener('scroll', function() {
-    var backToTop = document.getElementById('backToTop');
-    if (window.pageYOffset > 300) {
-      backToTop.style.display = 'flex';
-    } else {
-      backToTop.style.display = 'none';
-    }
+function closeModal() {
+  const modalEl = document.getElementById('modal');
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  modalInstance.hide();
+}
+
+// Back to Top Button
+window.addEventListener('scroll', function () {
+  const backToTop = document.getElementById('backToTop');
+  backToTop.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+});
+
+document.getElementById('backToTop').addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Initialize AOS
+if (typeof AOS !== 'undefined') {
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true
   });
-  
-  document.getElementById('backToTop').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  
-  // Initialize AOS (Animate On Scroll) if you're using it
-  if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-  }
+}
   </script>
 </body>
 </html>
