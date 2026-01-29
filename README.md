@@ -23,9 +23,9 @@ A Flask-based web application for the **Computer Department at Matoshri College 
 
 ## 🖼️ Screenshots  
 
-| Home Page | Admin Dashboard | Dev Club Page | Notices Section |
-|-----------|----------------|---------------|----------------|
-| ![Home](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/home.png) | ![Admin](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/admin.png) | ![Dev Club](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/devclub.png) | ![Notices](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/notices.png) |  
+| Home Page | Admin Dashboard | Dev Club Page | Events Page |
+|-----------|----------------|---------------|-------------|
+| ![Home](https://github.com/ShrihariKasar/Computer-Department-Website/blob/main/hcomp.png) | ![Admin](https://github.com/ShrihariKasar/Student-Achievement-Portal/blob/main/admin.png) | ![Dev Club](https://github.com/ShrihariKasar/Computer-Department-Website/blob/main/dev.png) | ![Events](https://github.com/ShrihariKasar/Computer-Department-Website/blob/main/ev.png) |
 
 ---
 
@@ -50,7 +50,8 @@ cd computer-department-website
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate (Windows)
+source venv/bin/activate  # Linux/Mac  
+venv\Scripts\activate     # Windows  
 ```
 
 ### 3. Install dependencies
@@ -81,7 +82,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf', 'xlsx'}
 CREATE DATABASE compdept_db;
 ```
 
-*(Tables for achievements, users, study\_materials, attendance, announcements, projects, coordinators, etc. are included in `schema.sql`)*
+*(Tables for achievements, users, study_materials, attendance, announcements, projects, coordinators, etc. are included in `schema.sql`)*
 
 ### 6. Run the app
 
@@ -108,7 +109,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you find this project useful, give it a ⭐️ and feel free to contribute or raise issues!
 
-```
-
-Do you also want me to **generate the `schema.sql` file in `.md` format** so it can be directly linked in the README?
 ```
